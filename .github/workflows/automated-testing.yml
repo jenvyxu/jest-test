@@ -1,6 +1,7 @@
-name: Node.js CI
+name: 自动化测试
 
 on:
+  # 指定推送分支
   push:
     branches: [master]
   pull_request:
@@ -21,8 +22,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
+      # 运行测试脚本
       - run: npm test
-
+      # 推送测试结果
       - name: Coveralls
         uses: coverallsapp/github-action@master
         with:
